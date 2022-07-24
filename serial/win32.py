@@ -185,9 +185,12 @@ WaitCommEvent = _stdcall_libraries['kernel32'].WaitCommEvent
 WaitCommEvent.restype = BOOL
 WaitCommEvent.argtypes = [HANDLE, LPDWORD, LPOVERLAPPED]
 
-CancelIoEx = _stdcall_libraries['kernel32'].CancelIoEx
-CancelIoEx.restype = BOOL
-CancelIoEx.argtypes = [HANDLE, LPOVERLAPPED]
+try:
+    CancelIoEx = _stdcall_libraries['kernel32'].CancelIoEx
+    CancelIoEx.restype = BOOL
+    CancelIoEx.argtypes = [HANDLE, LPOVERLAPPED]
+except Exception as e:
+    print(e)
 
 ONESTOPBIT = 0  # Variable c_int
 TWOSTOPBITS = 2  # Variable c_int
